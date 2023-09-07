@@ -51,6 +51,7 @@ class AlbumAdapter(private val context: Context, private val imageList: List<Ima
             holder.checkedView.visibility = View.INVISIBLE
         }
         val options = RequestOptions().placeholder(R.drawable.album_loading_bg).override(imageSize, imageSize)
+        // 借助Glide来加载uri式的图片源
         Glide.with(context).load(image.uri).apply(options).into(holder.imageView)
     }
 

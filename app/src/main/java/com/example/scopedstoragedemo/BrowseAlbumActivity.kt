@@ -1,10 +1,12 @@
 package com.example.scopedstoragedemo
 
 import android.content.ContentUris
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver.*
 import android.widget.Toast
@@ -59,12 +61,16 @@ class BrowseAlbumActivity : AppCompatActivity() {
 
     private fun loadImages(adapter: AlbumAdapter) {
         thread {
+            /**
+             * 这是获取外部存储的图片列表,不过通过查看SD#Pic下面确实也是有的【前提还是android 10】
+             */
             val cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null,
                 null, null, "${MediaStore.MediaColumns.DATE_ADDED} desc")
             if (cursor != null) {
                 while (cursor.moveToNext()) {
                     val id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID))
                     val uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id)
+                    Log.i(TAG, "loadImages: $uri") // content://media/external/images/media/34
                     imageList.add(Image(uri, false))
                 }
                 cursor.close()

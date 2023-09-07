@@ -9,7 +9,10 @@
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <!--
+        requestLegacyExternalStorage="true"
+        Android 11中已强制启用作用域存储，这段配置在Android 11(API 30)当中已不再有效
+    -->
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
