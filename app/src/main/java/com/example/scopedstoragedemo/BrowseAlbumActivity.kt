@@ -62,7 +62,7 @@ class BrowseAlbumActivity : AppCompatActivity() {
     private fun loadImages(adapter: AlbumAdapter) {
         thread {
             /**
-             * 这是获取外部存储的图片列表,不过通过查看SD#Pic下面确实也是有的【前提还是android 10】
+             * 这是获取外部存储的图片列表,不过通过查看SD#Pic下面确实也是有的
              */
             val cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null,
                 null, null, "${MediaStore.MediaColumns.DATE_ADDED} desc")
